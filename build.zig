@@ -20,6 +20,9 @@ pub fn build(b: *std.Build) void {
         },
         .root = b.path("src"),
     });
+    drako.linkSystemLibrary("raylib");
+    
+
     b.installArtifact(drako);
 
     const run_cmd = b.addRunArtifact(drako);
