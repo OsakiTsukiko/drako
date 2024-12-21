@@ -15,6 +15,7 @@ pub fn build(b: *std.Build) void {
         .files = &[_][]const u8{
             "main.cpp",
             "ui/bricks/nop.cpp",
+            "ui/bricks/print.cpp",
         },
         .flags = &[_][]const u8{
             "-Wall",
