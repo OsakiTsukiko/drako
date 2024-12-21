@@ -14,6 +14,7 @@ pub fn build(b: *std.Build) void {
     drako.addCSourceFiles(.{
         .files = &[_][]const u8{
             "main.cpp",
+            "ui/bricks/nop.cpp",
         },
         .flags = &[_][]const u8{
             "-Wall",
@@ -21,7 +22,7 @@ pub fn build(b: *std.Build) void {
         .root = b.path("src"),
     });
     drako.linkSystemLibrary("raylib");
-    
+
 
     b.installArtifact(drako);
 
