@@ -3,8 +3,6 @@
 #include <iostream>
 #include <raylib.h>
 
-#include "menu.h"
-
 #include "ui/utils.h"
 #include "ui/node.h"
 #include "ui/pointer.h"
@@ -24,8 +22,6 @@ int main() {
 
     while (!WindowShouldClose())
     {
-        updateMenu();
-
         BeginDrawing();
             ClearBackground(MY_DARKESTGRAY);
             // DrawText("Hello Drako!", 10, 10, 20, LIGHTGRAY);
@@ -37,9 +33,7 @@ int main() {
             for (Node node : scene_nodes) {
                 node.Draw();
             }
-
-            drawMenu();
-
+            
             DrawFPS(10, 10);
         EndDrawing();
     }
