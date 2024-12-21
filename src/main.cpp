@@ -1,9 +1,9 @@
 #include <iostream>
 #include <raylib.h>
 
-#include "ui/brick.h";
-#include "ui/bricks/nop.h";
-#include "ui/bricks/print.h";
+#include "ui/utils.h"
+#include "ui/snode.h"
+#include "ui/pointer.h"
 
 int main() {
     std::cout << "Hello Drako!\n";
@@ -12,20 +12,19 @@ int main() {
     SetTargetFPS(60);
     SetTextureFilter(GetFontDefault().texture, TEXTURE_FILTER_BILINEAR);
 
-    NopBrick nop = NopBrick();
-    PrintBrick pb = PrintBrick(&nop);
-    PrintBrick pb2 = PrintBrick(&pb);
+    Vector2 pos = {100, 100};
+    SNode s = SNode(pos, "TEST", MY_RED);
+    s.AddPointer({std::string("idk"), STRING});
+    s.AddPointer({std::string("idk2"), STRING});
+    s.AddPointer({std::string("my very cool field that is very cool"), STRING});
 
     while (!WindowShouldClose())
     {
         BeginDrawing();
-            
-            ClearBackground(RAYWHITE);
+            ClearBackground(MY_DARKESTGRAY);
             // DrawText("Hello Drako!", 10, 10, 20, LIGHTGRAY);
-
-            pb2.update();
-            pb2.draw();
-
+            s.Update();
+            s.Draw();
         EndDrawing();
     }
 
