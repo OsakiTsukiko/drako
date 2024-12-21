@@ -85,7 +85,7 @@ void Node::Draw() {
             this->position.y + FONT_SIZE + MARGIN * 2 + MARGIN + (FONT_SIZE + MARGIN + GAP) * index,
             FONT_SIZE + MARGIN,
             FONT_SIZE + MARGIN,
-            MY_DARKGRAY
+            p.color
         );
 
         // POINTR CIRCLE
@@ -93,7 +93,7 @@ void Node::Draw() {
             this->position.x + size + MARGIN * 2 + (FONT_SIZE + MARGIN) / 2,
             this->position.y + FONT_SIZE + MARGIN * 2 + MARGIN + (FONT_SIZE + MARGIN + GAP) * index + (FONT_SIZE + MARGIN) / 2,
             (FONT_SIZE + MARGIN) / 3.5,
-            MY_GRAY
+            MY_DARKGRAY
         );
 
         index += 1;
