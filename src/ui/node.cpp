@@ -1,17 +1,17 @@
-#include "snode.h"
+#include "node.h"
 #include "utils.h"
 
-SNode::SNode(Vector2 position, std::string name, Color color) {
+Node::Node(Vector2 position, std::string name, Color color) {
     this->position = position;
     this->name = name;
     this->color = color;
 }
 
-void SNode::Update() {
+void Node::Update() {
 
 }
 
-void SNode::Draw() {
+void Node::Draw() {
     int name_size = MeasureText(this->name.c_str(), FONT_SIZE);
     int text_size = 0;
     for (Pointer p : this->pointer_list) {
@@ -44,16 +44,18 @@ void SNode::Draw() {
     );
     DrawText(this->name.c_str(), this->position.x + MARGIN, this->position.y + MARGIN, FONT_SIZE, MY_DARKGRAY);
 
-    int gap_size = (this->pointer_list.size() - 1) * GAP;
-    if (gap_size < 0) gap_size = 0; 
-    // Draw Body
-    DrawRectangle(
-        this->position.x,
-        this->position.y + FONT_SIZE + MARGIN * 2,
-        size + MARGIN * 2,
-        this->pointer_list.size() * (FONT_SIZE + MARGIN) + gap_size + MARGIN * 2,
-        MY_DARKGRAY
-    );
+    if (!this->pointer_list.empty()) {
+        int gap_size = (this->pointer_list.size() - 1) * GAP;
+        if (gap_size < 0) gap_size = 0; 
+        // Draw Body
+        DrawRectangle(
+            this->position.x,
+            this->position.y + FONT_SIZE + MARGIN * 2,
+            size + MARGIN * 2,
+            this->pointer_list.size() * (FONT_SIZE + MARGIN) + gap_size + MARGIN * 2,
+            MY_DARKGRAY
+        );
+    }
 
     // Draw Pointers
     int index = 0;
@@ -98,6 +100,6 @@ void SNode::Draw() {
     }
 }
 
-void SNode::AddPointer(Pointer pointer) {
+void Node::AddPointer(Pointer pointer) {
     this->pointer_list.push_back(pointer);
 }

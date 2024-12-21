@@ -14,7 +14,10 @@ pub fn build(b: *std.Build) void {
     drako.addCSourceFiles(.{
         .files = &[_][]const u8{
             "main.cpp",
-            "ui/snode.cpp",
+            "menu.cpp",
+            "ui/node.cpp",
+            // nodes
+            "ui/nodes/nop.cpp",
         },
         .flags = &[_][]const u8{
             "-Wall",
