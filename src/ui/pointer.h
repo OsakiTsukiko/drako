@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <raylib.h>
+#include <functional>
 
 enum PType {
     INSTRUCTION,
@@ -15,4 +16,5 @@ struct Pointer
     std::string name;
     PType type;
     Color color;
+    std::function<void(void*)> callback;
 };

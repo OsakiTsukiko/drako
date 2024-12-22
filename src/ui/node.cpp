@@ -1,5 +1,30 @@
 #include "node.h"
+
+#include <vector>
+#include <string>
+#include <functional>
+
 #include "utils.h"
+#include "../global.h"
+#include "../menu.h"
+
+#include "nodes/comp.h"
+#include "nodes/nop.h"
+
+std::vector<std::string> options_instruction = {
+    std::string("Compounded Instrunction"),
+    std::string("No Instrunction"),
+};
+std::vector<std::function<void(Pointer, Vector2 pos)>> actions_instrunction = {
+    [](Pointer p, Vector2 pos) {
+        Node* comp = new CompNode(pos);
+        p.callback((void*)comp);
+    },
+    [](Pointer p, Vector2 pos) {
+        Node* nop = new NOPNode(pos);
+        p.callback((void*)nop);
+    },
+};
 
 Node::Node(Vector2 position, std::string name, Color color) {
     this->position = position;
@@ -95,6 +120,21 @@ void Node::Draw() {
             (FONT_SIZE + MARGIN) / 3.5,
             MY_DARKGRAY
         );
+
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+            if (CheckCollisionPointCircle(
+                GetMousePosition(),
+                {
+                    this->position.x + size + MARGIN * 2 + (FONT_SIZE + MARGIN) / 2,
+                    this->position.y + FONT_SIZE + MARGIN * 2 + MARGIN + (FONT_SIZE + MARGIN + GAP) * index + (FONT_SIZE + MARGIN) / 2
+                },
+                (FONT_SIZE + MARGIN) / 3.5
+            )) {
+                if (!IsMouseDisabled()) {
+                    OpenMenu(&options_instruction, &actions_instrunction, p);
+                }
+            }
+        }
 
         index += 1;
     }

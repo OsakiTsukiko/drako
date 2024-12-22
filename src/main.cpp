@@ -6,6 +6,7 @@
 #include "ui/utils.h"
 #include "ui/node.h"
 #include "ui/pointer.h"
+#include "menu.h"
 
 #include "ui/nodes/nop.h"
 #include "ui/nodes/comp.h"
@@ -19,12 +20,15 @@ int main() {
 
     while (!WindowShouldClose())
     {
+        UpdateMenu();
+        cn.Update();
+
         BeginDrawing();
             ClearBackground(MY_DARKESTGRAY);
             // DrawText("Hello Drako!", 10, 10, 20, LIGHTGRAY);
 
-            cn.Update();
             cn.Draw();
+            DrawMenu();
 
             DrawFPS(10, 10);
         EndDrawing();

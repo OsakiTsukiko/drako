@@ -16,8 +16,8 @@ protected:
     std::vector<Pointer> pointer_list;
 public:
     Node(Vector2 position, std::string name, Color color);
-    void Update();
-    void Draw();
+    virtual void Update();
+    virtual void Draw();
 
     void AddPointer(Pointer pointer);
 };
