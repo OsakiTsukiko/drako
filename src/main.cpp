@@ -8,8 +8,8 @@
 #include "ui/pointer.h"
 #include "menu.h"
 
-#include "ui/nodes/nop.h"
-#include "ui/nodes/comp.h"
+#include "ui/instructions/nop.h"
+#include "ui/instructions/comp.h"
 
 int main() {
     InitWindow(1080, 720, "Drako");

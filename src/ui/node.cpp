@@ -8,8 +8,8 @@
 #include "../global.h"
 #include "../menu.h"
 
-#include "nodes/comp.h"
-#include "nodes/nop.h"
+#include "instructions/comp.h"
+#include "instructions/nop.h"
 
 std::vector<std::string> options_instruction = {
     std::string("Compounded Instrunction"),

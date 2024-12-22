@@ -1,7 +1,8 @@
 #pragma once
 #include "../node.h"
+#include "../instruction.h"
 
-class CompNode : public Node {
+class CompNode : public InstructionNode {
     private:
         Node* first = nullptr;
         Node* second = nullptr;

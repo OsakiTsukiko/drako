@@ -18,8 +18,8 @@ pub fn build(b: *std.Build) void {
             "global.cpp",
             "ui/node.cpp",
             // nodes
-            "ui/nodes/nop.cpp",
-            "ui/nodes/comp.cpp",
+            "ui/instructions/nop.cpp",
+            "ui/instructions/comp.cpp",
         },
         .flags = &[_][]const u8{
             "-Wall",

@@ -1,7 +1,7 @@
 #include "comp.h"
 #include "../utils.h"
 
-CompNode::CompNode(Vector2 position, Node* parent) : Node({0.0, 0.0}, "Compounded Instruction", MY_RED, parent) {
+CompNode::CompNode(Vector2 position, Node* parent) : InstructionNode({0.0, 0.0}, "Compounded Instruction", parent) {
     this->position = position;
     this->AddPointer({
         "First Instruction",
