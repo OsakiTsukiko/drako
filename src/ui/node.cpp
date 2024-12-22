@@ -17,19 +17,20 @@ std::vector<std::string> options_instruction = {
 };
 std::vector<std::function<void(Pointer, Vector2 pos)>> actions_instrunction = {
     [](Pointer p, Vector2 pos) {
-        Node* comp = new CompNode(pos);
+        Node* comp = new CompNode(pos, nullptr);
         p.callback((void*)comp);
     },
     [](Pointer p, Vector2 pos) {
-        Node* nop = new NOPNode(pos);
+        Node* nop = new NOPNode(pos, nullptr);
         p.callback((void*)nop);
     },
 };
 
-Node::Node(Vector2 position, std::string name, Color color) {
+Node::Node(Vector2 position, std::string name, Color color, Node* parent) {
     this->position = position;
     this->name = name;
     this->color = color;
+    this->parent = parent;
 }
 
 void Node::Update() {
@@ -160,6 +161,41 @@ void Node::Draw() {
 
         index += 1;
     }
+}
+
+void Node::Draw2() {
+
+}
+
+Vector2 Node::GetDockerPos() {
+    return {
+        this->position.x - (FONT_SIZE + MARGIN * 2) / 2,
+        this->position.y + (FONT_SIZE + MARGIN * 2) / 2
+    };
+}
+
+Vector2 Node::GetPointerPos(int index) {
+    int name_size = MeasureText(this->name.c_str(), FONT_SIZE);
+    int text_size = 0;
+    for (Pointer p : this->pointer_list) {
+        int ts = MeasureText(p.name.c_str(), FONT_SIZE);
+        if (ts > text_size) text_size = ts;
+    }
+    int size = std::max(std::max(name_size, text_size), MIN_WIDTH);
+
+    return {
+        this->position.x + size + MARGIN * 2 + (FONT_SIZE + MARGIN) / 2,
+        this->position.y + FONT_SIZE + MARGIN * 2 + MARGIN + (FONT_SIZE + MARGIN + GAP) * index + (FONT_SIZE + MARGIN) / 2,
+    };
+}
+
+void Node::DrawConnection(Node* node, int port_index) {
+    Vector2 pointer_pos = GetPointerPos(port_index);
+    Vector2 docker_pos = node->GetDockerPos();
+
+    DrawLineEx(pointer_pos, docker_pos, 2.0, CONNECTION_COLOR);
+    DrawCircleV(pointer_pos, 3, RAYWHITE);
+    DrawCircleV(docker_pos, 7, RAYWHITE);
 }
 
 void Node::AddPointer(Pointer pointer) {

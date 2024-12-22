@@ -6,7 +6,8 @@ class CompNode : public Node {
         Node* first = nullptr;
         Node* second = nullptr;
     public:
-        CompNode(Vector2 position);
+        CompNode(Vector2 position, Node* parent);
         void Update() override;
         void Draw() override;
+        void Draw2() override;
 };

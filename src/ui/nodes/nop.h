@@ -4,5 +4,5 @@
 class NOPNode : public Node {
     private:
     public:
-        NOPNode(Vector2 position);
+        NOPNode(Vector2 position, Node* parent);
 };

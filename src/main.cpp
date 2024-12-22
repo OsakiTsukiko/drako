@@ -16,18 +16,19 @@ int main() {
     SetTargetFPS(120);
     SetTextureFilter(GetFontDefault().texture, TEXTURE_FILTER_BILINEAR);
 
-    CompNode cn = CompNode({50, 50});
+    CompNode root = CompNode({50, 50}, nullptr);
 
     while (!WindowShouldClose())
     {
         UpdateMenu();
-        cn.Update();
+        root.Update();
 
         BeginDrawing();
             ClearBackground(MY_DARKESTGRAY);
             // DrawText("Hello Drako!", 10, 10, 20, LIGHTGRAY);
 
-            cn.Draw();
+            root.Draw();
+            root.Draw2();
             DrawMenu();
 
             DrawFPS(10, 10);

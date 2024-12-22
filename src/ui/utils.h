@@ -11,3 +11,5 @@ const Color MY_BLUE = {124, 210, 230, 255};
 const Color MY_DARKESTGRAY = {18, 18, 18, 255};
 const Color MY_DARKGRAY = {36, 36, 36, 255};
 const Color MY_GRAY = {65, 65, 65, 255};
+
+const Color CONNECTION_COLOR = {255, 255, 255, 60};
