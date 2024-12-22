@@ -13,7 +13,7 @@
 
 int main() {
     InitWindow(1080, 720, "Drako");
-    SetTargetFPS(60);
+    SetTargetFPS(120);
     SetTextureFilter(GetFontDefault().texture, TEXTURE_FILTER_BILINEAR);
 
     CompNode cn = CompNode({50, 50});

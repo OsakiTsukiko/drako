@@ -33,7 +33,29 @@ Node::Node(Vector2 position, std::string name, Color color) {
 }
 
 void Node::Update() {
+    int name_size = MeasureText(this->name.c_str(), FONT_SIZE);
+    int text_size = 0;
+    for (Pointer p : this->pointer_list) {
+        int ts = MeasureText(p.name.c_str(), FONT_SIZE);
+        if (ts > text_size) text_size = ts;
+    }
+    int size = std::max(std::max(name_size, text_size), MIN_WIDTH);
 
+    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+        if (CheckCollisionPointRec(
+            GetMousePosition(),
+            {
+                this->position.x,
+                this->position.y,
+                float(size) + MARGIN * 2,
+                FONT_SIZE + MARGIN * 2,
+            }
+        )) {
+            Vector2 delta = GetMouseDelta();
+            this->position.x += delta.x;
+            this->position.y += delta.y;
+        }
+    }
 }
 
 void Node::Draw() {

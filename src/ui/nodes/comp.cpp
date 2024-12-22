@@ -22,6 +22,8 @@ CompNode::CompNode(Vector2 position) : Node({0.0, 0.0}, "Compounded Instruction"
 }
 
 void CompNode::Update() {
+    Node::Update();
+
     if (this->first != nullptr) this->first->Update();
     if (this->second != nullptr) this->second->Update();
 }
