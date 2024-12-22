@@ -1,4 +1,4 @@
-# A Visual Node-Based (very basic) Programming Language
+# A Visual Node-Based (very basic) Programming Language and IDE
 Use visual nodes to craft your **dream** program!  
 (very early in development)  
 *Drako uses a custom UI library which is still very unstable*
